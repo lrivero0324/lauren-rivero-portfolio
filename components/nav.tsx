@@ -8,7 +8,7 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("#projects");
+  const [active, setActive] = useState<string>("#projects");
 
   useEffect(() => {
     const onScroll = () => {
@@ -18,7 +18,7 @@ export function Nav() {
       setProgress(max > 0 ? window.scrollY / max : 0);
 
       const sections = navLinks.map((link) => link.href.slice(1));
-      let current = navLinks[0].href;
+      let current: string = navLinks[0].href;
       for (const id of sections) {
         const el = document.getElementById(id);
         if (!el) continue;
