@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f3ede4;
+  --foreground: #1a1612;
+  --paper: #fbf6ef;
+  --muted: #6e655c;
+  --line: #e2d6c8;
+  --accent: #b85a3e;
+  --accent-deep: #8f3e28;
+  --olive: #4c5a3c;
+  --ink-soft: #3a342e;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-paper: var(--paper);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-olive: var(--olive);
+  --color-ink-soft: var(--ink-soft);
+  --font-sans: var(--font-outfit);
+  --font-serif: var(--font-fraunces);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: #e8c4b6;
+  color: var(--foreground);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.font-serif {
+  font-family: var(--font-fraunces), Georgia, serif;
+}
+
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.1;
+  mix-blend-mode: multiply;
+  background-image: radial-gradient(rgba(26, 22, 18, 0.35) 0.6px, transparent 0.6px);
+  background-size: 3px 3px;
+}
+
+.section-shell {
+  margin-inline: auto;
+  width: min(1120px, calc(100% - 2rem));
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .section-shell {
+    width: min(1120px, calc(100% - 4rem));
+  }
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.nav-progress {
+  transform-origin: left center;
+}
+
+.hero {
+  background-image: radial-gradient(
+    ellipse 22rem 32rem at 100% 18%,
+    rgb(184 90 62 / 0.2),
+    transparent 68%
+  );
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    background-image:
+      radial-gradient(
+        ellipse 32rem 48rem at 92% 46%,
+        rgb(184 90 62 / 0.24),
+        transparent 66%
+      ),
+      radial-gradient(
+        ellipse 20rem 20rem at 76% 30%,
+        rgb(184 90 62 / 0.1),
+        transparent 72%
+      );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .grain,
+  .marquee-track,
+  .orb {
+    animation: none !important;
+  }
+}
