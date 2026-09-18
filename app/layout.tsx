@@ -44,8 +44,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${outfit.variable} ${fraunces.variable} h-full antialiased`}
     >
-      <body className="min-h-full overflow-x-clip bg-background text-foreground">
+      <body className="relative min-h-full overflow-x-clip bg-background text-foreground">
         <div className="grain" aria-hidden="true" />
+        <div className="page-wash" aria-hidden="true" />
         <div className="relative z-[1]">{children}</div>
       </body>
     </html>
