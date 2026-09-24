@@ -16,6 +16,7 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.laurenalexisrivero.com"),
   title: `${profile.name} — ${profile.role}`,
   description:
     "Portfolio of Lauren Rivero, an entry-level UX/UI designer and University of Florida graduate student. Recently an Experience Design Intern at Truist.",
@@ -35,6 +36,14 @@ export const metadata: Metadata = {
       "Projects, experience, and contact for Lauren Rivero, UX/UI designer.",
     type: "website",
     locale: "en_US",
+    url: "https://www.laurenalexisrivero.com",
+    siteName: profile.fullName,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${profile.name} — ${profile.role}`,
+    description:
+      "Projects, experience, and contact for Lauren Rivero, UX/UI designer.",
   },
 };
 
