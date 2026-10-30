@@ -565,6 +565,32 @@ export function FigmaPreview({
   );
 }
 
+/** Lazy-load a Figma proto so videos (and audio) don’t start until the user opts in. */
+function ProtoEmbed({ url, title }: { url: string; title: string }) {
+  const [active, setActive] = useState(false);
+
+  if (!active) {
+    return (
+      <button
+        type="button"
+        className="cs-proto-activate"
+        onClick={() => setActive(true)}
+      >
+        <span className="cs-proto-activate-label">View prototype</span>
+        <span className="cs-proto-activate-hint">Loads on click · keeps audio off until then</span>
+      </button>
+    );
+  }
+
+  return (
+    <iframe
+      title={title}
+      src={figmaEmbedSrc(url)}
+      allowFullScreen
+    />
+  );
+}
+
 /** Overview hero: desktop + mobile Figma device presentations side by side. */
 export function OverviewPrototypeShowcase({
   desktopUrl,
@@ -581,12 +607,7 @@ export function OverviewPrototypeShowcase({
     <div className="cs-proto-pair">
       <figure className="cs-proto-item cs-proto-item--desktop">
         <div className="cs-proto-frame cs-proto-frame--desktop">
-          <iframe
-            title={desktopLabel}
-            src={figmaEmbedSrc(desktopUrl)}
-            allowFullScreen
-            loading="eager"
-          />
+          <ProtoEmbed url={desktopUrl} title={desktopLabel} />
         </div>
         <figcaption className="cs-media-caption">
           <a
@@ -601,12 +622,7 @@ export function OverviewPrototypeShowcase({
       </figure>
       <figure className="cs-proto-item cs-proto-item--mobile">
         <div className="cs-proto-frame cs-proto-frame--mobile">
-          <iframe
-            title={mobileLabel}
-            src={figmaEmbedSrc(mobileUrl)}
-            allowFullScreen
-            loading="lazy"
-          />
+          <ProtoEmbed url={mobileUrl} title={mobileLabel} />
         </div>
         <figcaption className="cs-media-caption">
           <a

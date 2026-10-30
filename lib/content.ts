@@ -174,10 +174,10 @@ export const projects: readonly Project[] = [
     id: "glossier",
     title: "Glossier Redesign",
     subtitle: "Swiss-minimal homepage with a Saie-style product rail",
-    dates: "February 2025 — ongoing",
+    dates: "February 2025 — March 2025",
     role: "UX/UI Designer",
     cardRole: "UX/UI Designer",
-    timeline: "1.5 weeks + iteration",
+    timeline: "2 weeks",
     tools: "Figma, Photoshop",
     image: "/work/glossier.png",
     imageAlt:
@@ -188,14 +188,15 @@ export const projects: readonly Project[] = [
     overview:
       "A homepage redesign that brings Swiss Euro clarity to Glossier — real site copy, a VBB-inspired icons rail, and a working Saie-style horizontal scroll.",
     brief:
-      "After market pressure, the live homepage still felt dated and cluttered. The opportunity was a sharper landing page: intentional minimalism, real Glossier content, and a product discovery rail that feels current.",
+      "As Glossier faced growing competition and a shifting beauty market, its digital storefront presented an opportunity for improvement. The redesign aimed to strengthen product discovery, refine visual hierarchy, and create a more intuitive shopping experience while preserving the brand's recognizable identity.",
     approach:
-      "I audited glossier.com, referenced Victoria Beckham Beauty’s Shop The Icons pattern and Saie’s Essentials/Newness scroll, then designed and prototyped a homepage-only Swiss Minimal system.",
+      "I evaluated Glossier's existing homepage and explored design patterns from competing beauty brands before developing responsive wireframes, high-fidelity interfaces, and interactive prototypes. The redesign emphasized minimalist layouts, product-focused merchandising, and seamless navigation across desktop and mobile.",
     highlights: [
-      "Homepage-only redesign (desktop + mobile)",
-      "Swiss Euro minimal with Glossier voice",
-      "Saie-style horizontal bestsellers carousel",
-      "Lo-fi, hi-fi, and working Figma prototype",
+      "Responsive homepage redesign (desktop + mobile)",
+      "Refined navigation and product discovery",
+      "Interactive fragrance carousel and shopping experience",
+      "Product imagery and visual assets refined in Photoshop",
+      "Lo-fi, hi-fi, and interactive Figma prototypes",
     ],
   },
   {
@@ -252,9 +253,9 @@ export const glossierCaseStudy = {
   heroTitle: "Glossier Homepage Redesign",
   heroSubtitle:
     "Reimagining Glossier's digital storefront through intentional minimalism and improved product discovery.",
-  dates: "February 2025 — ongoing",
+  dates: "February 2025 — March 2025",
   role: "UX/UI Designer",
-  timeline: "1.5 weeks + iteration",
+  timeline: "2 weeks",
   tools: ["Figma", "Photoshop"],
   methods: [
     "[Placeholder] Research method",

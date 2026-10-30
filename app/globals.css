@@ -167,6 +167,46 @@ video {
   border: 0;
 }
 
+.cs-proto-activate {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 1.5rem;
+  border: 0;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(245, 230, 226, 0.14), transparent 55%),
+    #121212;
+  color: #f7f3ee;
+  cursor: pointer;
+  transition: background 160ms ease;
+}
+
+.cs-proto-activate:hover,
+.cs-proto-activate:focus-visible {
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(245, 230, 226, 0.22), transparent 55%),
+    #1a1a1a;
+  outline: none;
+}
+
+.cs-proto-activate-label {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  letter-spacing: -0.02em;
+}
+
+.cs-proto-activate-hint {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: rgba(247, 243, 238, 0.62);
+}
+
 .cs-proto-item .cs-media-caption {
   margin-top: 0.75rem;
 }
