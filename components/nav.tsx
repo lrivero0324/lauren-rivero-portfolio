@@ -1,14 +1,20 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/logo";
 import { navLinks, profile } from "@/lib/content";
 
-export function Nav() {
+export function Nav({
+  activeHref,
+}: {
+  /** Lock the active primary tab (e.g. "#projects" on case study pages). */
+  activeHref?: string;
+} = {}) {
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<string>("#projects");
+  const [active, setActive] = useState<string>(activeHref ?? "#projects");
 
   useEffect(() => {
     const onScroll = () => {
@@ -16,6 +22,11 @@ export function Nav() {
       const max = root.scrollHeight - root.clientHeight;
       setScrolled(window.scrollY > 12);
       setProgress(max > 0 ? window.scrollY / max : 0);
+
+      if (activeHref) {
+        setActive(activeHref);
+        return;
+      }
 
       const sections = navLinks.map((link) => link.href.slice(1));
       let current: string = navLinks[0].href;
@@ -32,7 +43,7 @@ export function Nav() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [activeHref]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -54,23 +65,27 @@ export function Nav() {
         aria-hidden="true"
       />
       <div className="section-shell flex h-16 items-center justify-between gap-3 md:h-[4.5rem]">
-        <a href="#content" className="flex shrink-0 items-center" aria-label="Lauren Rivero, home">
+        <Link href="/" className="flex shrink-0 items-center" aria-label="Lauren Rivero, home">
           <Logo />
-        </a>
+        </Link>
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`text-sm tracking-wide transition-colors ${
-                active === link.href
-                  ? "text-foreground"
-                  : "text-muted hover:text-foreground"
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = active === link.href;
+            return (
+              <a
+                key={link.href}
+                href={`/${link.href}`}
+                aria-current={isActive ? "true" : undefined}
+                className={`text-sm tracking-wide transition-colors ${
+                  isActive
+                    ? "text-foreground"
+                    : "text-muted hover:text-foreground"
+                }`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
           <a
             href={profile.resumeHref}
             target="_blank"
@@ -114,16 +129,22 @@ export function Nav() {
           className="fixed inset-0 z-[80] flex flex-col bg-background px-6 pb-10 pt-24 lg:hidden"
         >
           <nav className="flex flex-col gap-6" aria-label="Mobile">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="font-serif text-4xl"
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = active === link.href;
+              return (
+                <a
+                  key={link.href}
+                  href={`/${link.href}`}
+                  aria-current={isActive ? "true" : undefined}
+                  className={`font-serif text-4xl ${
+                    isActive ? "text-foreground" : "text-muted"
+                  }`}
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
             <a
               href={profile.resumeHref}
               target="_blank"

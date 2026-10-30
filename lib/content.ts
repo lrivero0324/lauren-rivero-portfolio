@@ -139,9 +139,65 @@ export type Project = {
   brief: string;
   approach: string;
   highlights: readonly string[];
+  caseStudyAvailable?: boolean;
+  caseStudyHref?: string;
 };
 
 export const projects: readonly Project[] = [
+  {
+    id: "pawse",
+    title: "Pawse",
+    subtitle: "Weather web app for safer dog walks",
+    dates: "November 2025",
+    role: "UX/UI Designer & Front-End Developer",
+    cardRole: "Designer & Developer",
+    timeline: "2 weeks",
+    tools: "HTML, CSS, JavaScript",
+    image: "/work/pawse.png",
+    imageAlt:
+      "Desktop and mobile mockups of the Pawse weather app showing a sunny forecast and a walk-safety recommendation for a dog.",
+    accent: "#D9E0D4",
+    overview:
+      "A responsive web app that helps dog owners decide whether weather conditions are safe for walking their pets, pairing real-time weather data with a calm, quick-read interface.",
+    brief:
+      "Checking the weather is easy. Deciding whether it is actually safe to walk a dog is not. Pawse needed to turn conditions into a clear yes, no, or wait — without making owners hunt through a forecast.",
+    approach:
+      "I designed a mobile-first interface for fast decision-making, then built the front end in HTML, CSS, and JavaScript. Real-time weather information sits inside a simple visual system so the recommendation is readable at a glance.",
+    highlights: [
+      "Responsive mobile-first design",
+      "Real-time weather information",
+      "Intuitive, user-friendly interface",
+      "Front-end implementation with HTML, CSS, and JavaScript",
+    ],
+  },
+  {
+    id: "glossier",
+    title: "Glossier Redesign",
+    subtitle: "Swiss-minimal homepage with a Saie-style product rail",
+    dates: "February 2025 — ongoing",
+    role: "UX/UI Designer",
+    cardRole: "UX/UI Designer",
+    timeline: "1.5 weeks + iteration",
+    tools: "Figma, Photoshop",
+    image: "/work/glossier.png",
+    imageAlt:
+      "Swiss-minimal Glossier homepage redesign mockups for desktop and mobile with a horizontal bestsellers carousel.",
+    accent: "#F5E6E2",
+    caseStudyAvailable: true,
+    caseStudyHref: "/projects/glossier",
+    overview:
+      "A homepage redesign that brings Swiss Euro clarity to Glossier — real site copy, a VBB-inspired icons rail, and a working Saie-style horizontal scroll.",
+    brief:
+      "After market pressure, the live homepage still felt dated and cluttered. The opportunity was a sharper landing page: intentional minimalism, real Glossier content, and a product discovery rail that feels current.",
+    approach:
+      "I audited glossier.com, referenced Victoria Beckham Beauty’s Shop The Icons pattern and Saie’s Essentials/Newness scroll, then designed and prototyped a homepage-only Swiss Minimal system.",
+    highlights: [
+      "Homepage-only redesign (desktop + mobile)",
+      "Swiss Euro minimal with Glossier voice",
+      "Saie-style horizontal bestsellers carousel",
+      "Lo-fi, hi-fi, and working Figma prototype",
+    ],
+  },
   {
     id: "keybeauty",
     title: "KeyBeauty by Yeny",
@@ -169,56 +225,401 @@ export const projects: readonly Project[] = [
       "Close designer–developer collaboration and client alignment",
     ],
   },
-  {
-    id: "glossier",
-    title: "Glossier Redesign",
-    subtitle: "Conceptual UX/UI redesign for an e-commerce website",
-    dates: "February 2025",
-    role: "UX/UI Designer",
-    cardRole: "UX/UI Designer",
-    timeline: "1.5 weeks",
-    tools: "Figma, Photoshop",
-    image: "/work/glossier.png",
-    imageAlt:
-      "Desktop and mobile mockups of a Glossier-inspired e-commerce redesign with product photography and a shopping bag.",
-    accent: "#E4D7C8",
-    overview:
-      "A conceptual redesign focused on enhancing Glossier's e-commerce experience while preserving its clean, minimalist aesthetic.",
-    brief:
-      "The brand already had a distinct visual voice. The opportunity was to strengthen how people browse and shop without losing that softness: clearer hierarchy, more confident product focus, and an easier path from discovery to bag.",
-    approach:
-      "I redesigned responsive desktop and mobile interfaces with a product-first layout, refined the visual hierarchy, and produced high-fidelity mockups that keep Glossier's minimal language while making shopping feel more intuitive.",
-    highlights: [
-      "Redesigned responsive desktop and mobile interfaces",
-      "Refined product-focused visual hierarchy",
-      "Enhanced browsing and shopping experience",
-      "High-fidelity interface mockups",
-    ],
-  },
-  {
-    id: "pawse",
-    title: "Pawse",
-    subtitle: "Weather web app for safer dog walks",
-    dates: "November 2025",
-    role: "UX/UI Designer & Front-End Developer",
-    cardRole: "Designer & Developer",
-    timeline: "2 weeks",
-    tools: "HTML, CSS, JavaScript",
-    image: "/work/pawse.png",
-    imageAlt:
-      "Desktop and mobile mockups of the Pawse weather app showing a sunny forecast and a walk-safety recommendation for a dog.",
-    accent: "#D9E0D4",
-    overview:
-      "A responsive web app that helps dog owners decide whether weather conditions are safe for walking their pets, pairing real-time weather data with a calm, quick-read interface.",
-    brief:
-      "Checking the weather is easy. Deciding whether it is actually safe to walk a dog is not. Pawse needed to turn conditions into a clear yes, no, or wait — without making owners hunt through a forecast.",
-    approach:
-      "I designed a mobile-first interface for fast decision-making, then built the front end in HTML, CSS, and JavaScript. Real-time weather information sits inside a simple visual system so the recommendation is readable at a glance.",
-    highlights: [
-      "Responsive mobile-first design",
-      "Real-time weather information",
-      "Intuitive, user-friendly interface",
-      "Front-end implementation with HTML, CSS, and JavaScript",
-    ],
-  },
 ];
+
+export type CaseStudyMedia = {
+  id: string;
+  label: string;
+  /** Frame proportion for the placeholder / export. Prefer "tall" for full-page desktop Figma frames. */
+  aspect: "16/9" | "5/3" | "4/3" | "3/4" | "9/16" | "1/1" | "tall";
+  /**
+   * How the filled image sits in its preview frame.
+   * - contain (default): full export, no crop — use for complete Figma frames
+   * - cover: cropped hero-style preview — use only for overview teasers
+   */
+  fit?: "contain" | "cover";
+  /** Intrinsic pixel size of the export — used for sharp, proportional previews. */
+  width?: number;
+  height?: number;
+  /** Set a public path when the asset is ready; leave null for placeholder. */
+  src: string | null;
+  alt: string;
+  caption?: string;
+};
+
+export const glossierCaseStudy = {
+  cardTitle: "Glossier Redesign",
+  heroTitle: "Glossier Homepage Redesign",
+  heroSubtitle:
+    "Reimagining Glossier's digital storefront through intentional minimalism and improved product discovery.",
+  dates: "February 2025 — ongoing",
+  role: "UX/UI Designer",
+  timeline: "1.5 weeks + iteration",
+  tools: ["Figma", "Photoshop"],
+  methods: [
+    "[Placeholder] Research method",
+    "Low-fidelity wireframing",
+    "High-fidelity UI design",
+    "Interactive prototyping",
+  ],
+  platform: "Responsive web (desktop + mobile)",
+  team: "Solo concept project",
+  accent: "#F5E6E2",
+  image: "/work/glossier.png",
+  imageAlt: "Desktop and mobile mockups of the Glossier homepage redesign.",
+  figmaUrl: "",
+  figmaLabel: "Open interactive Figma prototype",
+  sections: [
+    { id: "overview", label: "Overview", index: "01" },
+    { id: "problem", label: "Problem", index: "02" },
+    { id: "research", label: "Research", index: "03" },
+    { id: "process", label: "Process", index: "04" },
+    { id: "final-design", label: "Final design", index: "05" },
+    { id: "results", label: "Results", index: "06" },
+    { id: "reflection", label: "Reflection", index: "07" },
+  ] as const,
+  overview: {
+    heroMockup: {
+      id: "overview-hero-mockup",
+      label: "Figma export · Hero preview (cropped composition)",
+      aspect: "16/9" as const,
+      fit: "cover" as const,
+      src: null,
+      alt: "Placeholder for a cropped hero preview of the redesigned Glossier homepage.",
+      caption:
+        "[Placeholder] Compelling cropped preview — not the full-page Final Design export.",
+    } satisfies CaseStudyMedia,
+    /** Overview hero: interactive Figma device presentations (MacBook + iPhone). */
+    desktopProtoUrl:
+      "https://www.figma.com/proto/xrLU3g8q0xRH82QfCFL7yv/Glossier-Homepage-Redesign-%E2%80%94-Lauren-Rivero?node-id=371-842&scaling=min-zoom&content-scaling=fixed&page-id=138%3A2&starting-point-node-id=371%3A842",
+    mobileProtoUrl:
+      "https://www.figma.com/proto/xrLU3g8q0xRH82QfCFL7yv/Glossier-Homepage-Redesign-%E2%80%94-Lauren-Rivero?node-id=371-2086&scaling=min-zoom&content-scaling=fixed&page-id=138%3A2&starting-point-node-id=371%3A2086",
+    desktopProtoLabel: "Desktop prototype · MacBook Air",
+    mobileProtoLabel: "Mobile prototype · iPhone",
+  },
+  problem: {
+    context:
+      "[Placeholder] Describe the UX challenges on the original Glossier homepage.",
+    businessContext:
+      "[Placeholder] Describe the business or product context for improving the storefront experience.",
+    painPoints: [
+      {
+        title: "[Placeholder] Pain point 1",
+        body: "[Placeholder] Explain the first primary pain point.",
+      },
+      {
+        title: "[Placeholder] Pain point 2",
+        body: "[Placeholder] Explain the second primary pain point.",
+      },
+      {
+        title: "[Placeholder] Pain point 3",
+        body: "[Placeholder] Explain the third primary pain point.",
+      },
+    ],
+    originalScreenshot: {
+      id: "problem-original-homepage",
+      label: "Original Glossier homepage screenshot",
+      aspect: "16/9" as const,
+      src: null,
+      alt: "Placeholder for the original Glossier homepage screenshot.",
+      caption: "[Placeholder] Add original homepage screenshot.",
+    } satisfies CaseStudyMedia,
+    performanceStats: [
+      {
+        id: "stat-1",
+        label: "[Placeholder] Baseline metric 1",
+        value: "—",
+        note: "Placeholder · company/site baseline, separate from redesign outcomes",
+        kind: "placeholder" as const,
+      },
+      {
+        id: "stat-2",
+        label: "[Placeholder] Baseline metric 2",
+        value: "—",
+        note: "Placeholder · company/site baseline, separate from redesign outcomes",
+        kind: "placeholder" as const,
+      },
+      {
+        id: "stat-3",
+        label: "[Placeholder] Baseline metric 3",
+        value: "—",
+        note: "Placeholder · company/site baseline, separate from redesign outcomes",
+        kind: "placeholder" as const,
+      },
+    ],
+  },
+  research: {
+    intro:
+      "[Placeholder] Introduce the research and discovery approach used for this project.",
+    audit: {
+      title: "UX audit",
+      body: "[Placeholder] Summarize the UX audit process and what you reviewed.",
+    },
+    audience: {
+      title: "Target audience",
+      body: "[Placeholder] Describe the target audience for the homepage experience.",
+    },
+    competitive: {
+      title: "Competitive analysis",
+      body: "[Placeholder] Summarize competitor patterns relevant to homepage UX and product discovery.",
+      references: [
+        {
+          id: "comp-vbb",
+          label: "Figma export · Competitor — Victoria Beckham Beauty",
+          aspect: "16/9" as const,
+          src: null,
+          alt: "Placeholder for Victoria Beckham Beauty homepage reference.",
+          caption:
+            "[Placeholder] Brief note on Shop The Icons / discovery pattern.",
+        },
+        {
+          id: "comp-saie",
+          label: "Figma export · Competitor — Saie",
+          aspect: "16/9" as const,
+          src: null,
+          alt: "Placeholder for Saie homepage reference.",
+          caption:
+            "[Placeholder] Brief note on Essentials / Newness scroll pattern.",
+        },
+      ] satisfies CaseStudyMedia[],
+    },
+    insights: [
+      {
+        title: "[Placeholder] Insight 1",
+        body: "[Placeholder] Write the first key research insight.",
+        evidence: "[Placeholder] Optional supporting evidence or observation.",
+      },
+      {
+        title: "[Placeholder] Insight 2",
+        body: "[Placeholder] Write the second key research insight.",
+        evidence: "[Placeholder] Optional supporting evidence or observation.",
+      },
+      {
+        title: "[Placeholder] Insight 3",
+        body: "[Placeholder] Write the third key research insight.",
+        evidence: "[Placeholder] Optional supporting evidence or observation.",
+      },
+    ],
+    annotatedHomepage: {
+      id: "research-annotated",
+      label: "Figma export · Annotated original homepage",
+      aspect: "tall" as const,
+      src: null,
+      alt: "Placeholder for annotated original homepage.",
+      caption: "[Placeholder] Annotated screenshot with callouts.",
+    } satisfies CaseStudyMedia,
+  },
+  process: {
+    strategy:
+      "[Placeholder] Describe the design strategy and objectives that guided the process.",
+    decisions: [
+      {
+        title: "[Placeholder] Design decision 1",
+        body: "[Placeholder] Explain this design decision.",
+      },
+      {
+        title: "[Placeholder] Design decision 2",
+        body: "[Placeholder] Explain this design decision.",
+      },
+      {
+        title: "[Placeholder] Design decision 3",
+        body: "[Placeholder] Explain this design decision.",
+      },
+    ],
+    desktopWire: {
+      id: "wire-desktop",
+      label: "Figma export · Lo-fi desktop wireframe",
+      aspect: "tall" as const,
+      fit: "contain" as const,
+      width: 2880,
+      height: 9116,
+      src: "/work/glossier/glossier-lofi-desktop.png",
+      alt: "Low-fidelity desktop wireframe of the Glossier homepage redesign, showing full-page layout structure.",
+      caption: "[Placeholder] Annotation for the lo-fi desktop structure.",
+    } satisfies CaseStudyMedia,
+    mobileWire: {
+      id: "wire-mobile",
+      label: "Figma export · Lo-fi mobile wireframe",
+      aspect: "9/16" as const,
+      fit: "contain" as const,
+      width: 780,
+      height: 9956,
+      src: "/work/glossier/glossier-lofi-mobile.png",
+      alt: "Low-fidelity mobile wireframe of the Glossier homepage redesign, showing full-page mobile structure.",
+      caption: "[Placeholder] Annotation for the lo-fi mobile structure.",
+    } satisfies CaseStudyMedia,
+    desktopHifi: {
+      id: "hifi-desktop",
+      label: "Figma export · Hi-fi desktop homepage",
+      aspect: "tall" as const,
+      fit: "contain" as const,
+      width: 2880,
+      height: 10026,
+      src: "/work/glossier/glossier-hifi-desktop.png",
+      alt: "High-fidelity desktop homepage design for the Glossier redesign, including hero, navigation, and product modules.",
+      caption: "[Placeholder] Annotation for the hi-fi desktop direction.",
+    } satisfies CaseStudyMedia,
+    mobileHifi: {
+      id: "hifi-mobile",
+      label: "Figma export · Hi-fi mobile homepage",
+      aspect: "9/16" as const,
+      fit: "contain" as const,
+      width: 780,
+      height: 10896,
+      src: "/work/glossier/glossier-hifi-mobile.png",
+      alt: "High-fidelity mobile homepage design for the Glossier redesign, including product imagery and UI details.",
+      caption: "[Placeholder] Annotation for the hi-fi mobile direction.",
+    } satisfies CaseStudyMedia,
+    designSystem: {
+      title: "Design system preview",
+      note: "[Placeholder] Replace with exported tokens from Figma when ready.",
+      colors: [
+        { name: "[Placeholder] Color 1", value: "#111111" },
+        { name: "[Placeholder] Color 2", value: "#FFFFFF" },
+        { name: "[Placeholder] Color 3", value: "#E8A598" },
+        { name: "[Placeholder] Color 4", value: "#F5E6E2" },
+      ],
+    },
+  },
+  finalDesign: {
+    intro:
+      "[Placeholder] Introduce the final homepage design and what reviewers should notice.",
+    desktop: {
+      id: "final-desktop",
+      label: "Figma export · Complete desktop homepage",
+      aspect: "tall" as const,
+      fit: "contain" as const,
+      src: null,
+      alt: "Placeholder for the complete final desktop homepage export.",
+      caption:
+        "[Placeholder] Full-page desktop homepage — distinct from the Overview hero preview.",
+    } satisfies CaseStudyMedia,
+    mobile: [
+      {
+        id: "final-mobile-1",
+        label: "Figma export · Mobile homepage screen 1",
+        aspect: "9/16" as const,
+        src: null,
+        alt: "Placeholder for mobile screen 1.",
+        caption: "[Placeholder] Annotation for mobile screen 1.",
+      },
+      {
+        id: "final-mobile-2",
+        label: "Figma export · Mobile homepage screen 2",
+        aspect: "9/16" as const,
+        src: null,
+        alt: "Placeholder for mobile screen 2.",
+        caption: "[Placeholder] Annotation for mobile screen 2.",
+      },
+      {
+        id: "final-mobile-3",
+        label: "Figma export · Mobile homepage screen 3",
+        aspect: "9/16" as const,
+        src: null,
+        alt: "Placeholder for mobile screen 3.",
+        caption: "[Placeholder] Annotation for mobile screen 3.",
+      },
+    ] satisfies CaseStudyMedia[],
+    interactionHighlights: [
+      {
+        id: "interaction-desktop-nav",
+        label: "Desktop Navigation",
+        aspect: "16/9" as const,
+        src: null,
+        alt: "Placeholder for desktop navigation hover-menu interaction.",
+        caption:
+          "[Placeholder] Hover-menu interactions — describe the desktop nav behavior.",
+      },
+      {
+        id: "interaction-shopping-bag",
+        label: "Shopping Bag",
+        aspect: "16/9" as const,
+        src: null,
+        alt: "Placeholder for shopping bag slide-out drawer.",
+        caption:
+          "[Placeholder] Slide-out drawer — describe the bag / cart experience.",
+      },
+      {
+        id: "interaction-mobile-nav",
+        label: "Mobile Navigation",
+        aspect: "9/16" as const,
+        src: null,
+        alt: "Placeholder for mobile expanded hamburger menu.",
+        caption:
+          "[Placeholder] Expanded hamburger menu — describe the mobile nav pattern.",
+      },
+      {
+        id: "interaction-product-discovery",
+        label: "Product Discovery",
+        aspect: "16/9" as const,
+        src: null,
+        alt: "Placeholder for featured collections and product carousel.",
+        caption:
+          "[Placeholder] Featured collections and product carousel — describe discovery.",
+      },
+    ] satisfies CaseStudyMedia[],
+    beforeAfter: {
+      before: {
+        id: "ba-before",
+        label: "Figma export · Before — original homepage",
+        aspect: "tall" as const,
+        src: null,
+        alt: "Placeholder for original homepage comparison image.",
+        caption: "[Placeholder] Original homepage screenshot",
+      } satisfies CaseStudyMedia,
+      after: {
+        id: "ba-after",
+        label: "Figma export · After — redesigned homepage",
+        aspect: "tall" as const,
+        src: null,
+        alt: "Placeholder for redesigned homepage comparison image.",
+        caption: "[Placeholder] Redesigned homepage screenshot",
+      } satisfies CaseStudyMedia,
+    },
+  },
+  results: {
+    summary:
+      "[Placeholder] Summarize intended UX improvements. Do not invent measured company results.",
+    designOutcomes: [
+      "[Placeholder] Design outcome 1 — what was produced",
+      "[Placeholder] Design outcome 2 — what was produced",
+      "[Placeholder] Design outcome 3 — what was produced",
+      "[Placeholder] Design outcome 4 — what was produced",
+    ],
+    successMetrics: [
+      {
+        label: "Product discoverability",
+        detail:
+          "[Placeholder] How improved product discovery could be evaluated.",
+      },
+      {
+        label: "Navigation efficiency",
+        detail:
+          "[Placeholder] How clearer navigation paths could be evaluated.",
+      },
+      {
+        label: "Product engagement",
+        detail:
+          "[Placeholder] How engagement with product modules could be evaluated.",
+      },
+    ],
+    usabilityNote:
+      "[Placeholder] Room for measured usability findings if testing is completed. Leave blank or replace when available.",
+  },
+  reflection: {
+    takeaways: [
+      "[Placeholder] Key takeaway 1",
+      "[Placeholder] Key takeaway 2",
+      "[Placeholder] Key takeaway 3",
+    ],
+    challenges: [
+      "[Placeholder] Challenge or lesson learned 1",
+      "[Placeholder] Challenge or lesson learned 2",
+    ],
+    nextSteps: [
+      "[Placeholder] Next step 1",
+      "[Placeholder] Next step 2",
+      "[Placeholder] Next step 3",
+    ],
+  },
+} as const;

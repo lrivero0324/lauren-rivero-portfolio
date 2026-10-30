@@ -84,6 +84,180 @@ video {
   }
 }
 
+.cs-shell {
+  margin-inline: auto;
+  width: min(1240px, calc(100% - 2rem));
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .cs-shell {
+    width: min(1240px, calc(100% - 4rem));
+  }
+}
+
+.cs-prose {
+  max-width: 46rem;
+}
+
+.cs-showcase {
+  width: 100%;
+}
+
+.cs-pair {
+  display: grid;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .cs-pair {
+    /* Wider mobile column so 9:16 frames stay inspectable */
+    grid-template-columns: minmax(0, 1fr) minmax(15rem, 17.5rem);
+    gap: 1.5rem;
+    align-items: start;
+  }
+}
+
+/* Overview hero: Figma MacBook + iPhone — equal-height cards, larger devices */
+.cs-proto-pair {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 1.35rem;
+  width: 100%;
+}
+
+.cs-proto-item {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  min-width: 0;
+}
+
+.cs-proto-item--desktop {
+  flex: 1 1 20rem;
+}
+
+.cs-proto-item--mobile {
+  flex: 0 0 auto;
+  width: min(18.5rem, 100%);
+}
+
+.cs-proto-frame {
+  position: relative;
+  width: 100%;
+  flex: 1 1 auto;
+  /* Shared height so top + bottom edges of both cards align */
+  min-height: clamp(28rem, 62vw, 44rem);
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  background: #0b0b0b;
+}
+
+.cs-proto-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.cs-proto-item .cs-media-caption {
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 799px) {
+  .cs-proto-pair {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cs-proto-item--mobile {
+    width: min(20rem, 100%);
+    margin-inline: auto;
+  }
+
+  .cs-proto-frame {
+    min-height: clamp(24rem, 88vw, 34rem);
+  }
+}
+
+.cs-mobile-gallery {
+  display: grid;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (min-width: 640px) {
+  .cs-mobile-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.35rem;
+  }
+}
+
+/* Keep single-column mobile frames large enough to read UI */
+@media (max-width: 639px) {
+  .cs-mobile-gallery {
+    grid-template-columns: minmax(0, 20rem);
+    justify-content: center;
+  }
+}
+
+.cs-compare-refs {
+  display: grid;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .cs-compare-refs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+.cs-interactions {
+  display: grid;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .cs-interactions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem 1.5rem;
+  }
+}
+
+.cs-final-stage {
+  position: relative;
+}
+
+.cs-final-stage::before {
+  content: "";
+  position: absolute;
+  inset: -0.75rem -0.85rem;
+  z-index: -1;
+  border-radius: 1.15rem;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-accent) 42%, transparent),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .cs-final-stage::before {
+    inset: -1rem -1.15rem;
+  }
+}
+
 .eyebrow {
   font-size: 0.72rem;
   font-weight: 600;
@@ -119,6 +293,393 @@ video {
   mask-image: linear-gradient(to bottom, #000 20%, transparent 52%);
 }
 
+.case-study-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--olive) 14%, var(--paper));
+  color: var(--olive);
+  padding: 0.3rem 0.7rem 0.3rem 0.55rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.case-study-dot {
+  position: relative;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: var(--olive);
+  box-shadow: 0 0 0 0 rgb(76 90 60 / 0.55);
+  animation: case-study-glow 2.2s ease-out infinite;
+}
+
+@keyframes case-study-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgb(76 90 60 / 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 0.45rem rgb(76 90 60 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(76 90 60 / 0);
+  }
+}
+
+.text-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.text-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.15em;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 220ms ease;
+}
+
+.text-link:hover {
+  color: var(--foreground);
+}
+
+.text-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Glossier case study */
+.cs-reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 95;
+  height: 2px;
+  width: 100%;
+  transform-origin: left center;
+  background: var(--accent);
+  pointer-events: none;
+}
+
+.cs-mobile-nav {
+  position: sticky;
+  top: 4.5rem;
+  z-index: 40;
+  margin-inline: -0.25rem;
+  padding-block: 0.35rem;
+  background: color-mix(in srgb, var(--background) 92%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.cs-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 520ms ease,
+    transform 520ms ease;
+}
+
+.cs-reveal[data-visible="true"] {
+  opacity: 1;
+  /* translateY(0) keeps a transform layer and softens images in Chrome */
+  transform: none;
+}
+
+.cs-media {
+  margin: 0;
+  width: 100%;
+}
+
+.cs-media-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px dashed var(--line);
+  border-radius: 1.25rem;
+  background: var(--paper);
+  text-align: left;
+  cursor: default;
+  flex-shrink: 0;
+}
+
+/* Tall desktop Figma frames — room for full-page exports without cropping UI */
+.cs-media-frame--tall {
+  aspect-ratio: 3 / 4;
+  min-height: clamp(22rem, 58vw, 40rem);
+}
+
+.cs-media-frame--cover .cs-media-img,
+.cs-media-frame--export-preview .cs-media-img {
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* Static Figma export preview — no nested scroll; full image opens in lightbox */
+.cs-media-frame--export-preview {
+  overflow: hidden;
+  background: color-mix(in srgb, var(--paper) 92%, var(--line));
+}
+
+.cs-media-expand {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--foreground) 12%, var(--line));
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  color: var(--foreground);
+  pointer-events: none;
+  box-shadow: 0 1px 4px rgb(26 22 18 / 0.08);
+}
+
+.cs-media-frame.aspect-\[9\/16\] {
+  min-height: 20rem;
+}
+
+.cs-pair-mobile .cs-media-frame.aspect-\[9\/16\],
+.cs-pair-mobile .cs-media-frame--natural {
+  min-height: 24rem;
+}
+
+.cs-mobile-nav-bar {
+  position: sticky;
+  top: 4rem;
+  z-index: 80;
+  margin-top: 1.25rem;
+  border-block: 1px solid color-mix(in srgb, var(--line) 85%, transparent);
+  background: color-mix(in srgb, var(--background) 92%, transparent);
+  backdrop-filter: blur(10px);
+  padding-block: 0.65rem;
+}
+
+@media (min-width: 768px) {
+  .cs-mobile-nav-bar {
+    top: 4.5rem;
+  }
+}
+
+.cs-media-caption {
+  margin: 0.75rem 0 0;
+  /* Align with the card’s visual left corner (matches frame radius / empty-state inset) */
+  padding: 0 1.25rem;
+  text-align: left;
+  min-height: 2.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--muted);
+}
+
+.cs-media-frame--accent {
+  background: var(--accent);
+  background: color-mix(in srgb, #f5e6e2 88%, var(--paper));
+}
+
+.cs-media-frame--filled {
+  border-style: solid;
+  cursor: zoom-in;
+}
+
+.cs-media-frame--filled:hover {
+  border-color: color-mix(in srgb, var(--foreground) 22%, var(--line));
+}
+
+.cs-media-frame--empty {
+  cursor: default;
+}
+
+.cs-media-frame:disabled {
+  cursor: default;
+}
+
+.cs-media-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+}
+
+.cs-final-stage .cs-media-frame {
+  min-height: clamp(18rem, 52vw, 34rem);
+}
+
+.cs-compare-frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  background: color-mix(in srgb, #f5e6e2 70%, var(--paper));
+}
+
+.cs-compare-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.cs-compare-before {
+  overflow: hidden;
+  border-right: 2px solid var(--foreground);
+}
+
+.cs-compare-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--foreground);
+  pointer-events: none;
+}
+
+.cs-compare-handle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--foreground);
+  border-radius: 999px;
+  background: var(--paper);
+  transform: translate(-50%, -50%);
+}
+
+.cs-compare-range {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+}
+
+.cs-compare-placeholder {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+}
+
+.cs-figma-frame {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  background: var(--paper);
+}
+
+.cs-figma-empty {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.cs-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 4.5rem 1.25rem 2rem;
+  background: rgb(26 22 18 / 0.88);
+  -webkit-overflow-scrolling: touch;
+}
+
+.cs-lightbox-toolbar {
+  position: fixed;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cs-lightbox-zoom {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  border: 1px solid rgb(251 246 239 / 0.35);
+  background: rgb(26 22 18 / 0.55);
+  padding: 0.2rem;
+}
+
+.cs-lightbox-tool,
+.cs-lightbox-close {
+  border-radius: 999px;
+  border: 1px solid rgb(251 246 239 / 0.35);
+  background: transparent;
+  padding: 0.45rem 0.9rem;
+  color: var(--paper);
+  font-size: 0.875rem;
+}
+
+.cs-lightbox-tool {
+  min-width: 2.25rem;
+  padding-inline: 0.65rem;
+  border: 0;
+}
+
+.cs-lightbox-tool:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.cs-lightbox-zoom-label {
+  min-width: 2.75rem;
+  text-align: center;
+  color: var(--paper);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.cs-lightbox-inner {
+  width: min(1200px, 100%);
+  margin-inline: auto;
+}
+
+.cs-lightbox-image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+  object-fit: contain;
+  border-radius: 0.75rem;
+  background: var(--paper);
+}
+
+.cs-lightbox-hint {
+  margin-top: 0.75rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: rgb(251 246 239 / 0.55);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -126,7 +687,18 @@ video {
 
   .grain,
   .marquee-track,
-  .orb {
+  .orb,
+  .case-study-dot {
     animation: none !important;
+  }
+
+  .text-link::after {
+    transition: none;
+  }
+
+  .cs-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

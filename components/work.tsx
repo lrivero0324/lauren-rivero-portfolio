@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { projects, type Project } from "@/lib/content";
 
@@ -43,17 +44,15 @@ export function Work() {
                 className="overflow-hidden rounded-[1.75rem] border border-line bg-paper"
                 style={{ backgroundColor: isOpen ? project.accent : undefined }}
               >
-                <button
-                  type="button"
-                  className="grid w-full items-stretch text-left lg:grid-cols-[1.15fr_0.85fr]"
-                  aria-expanded={isOpen}
-                  aria-controls={`${project.id}-study`}
-                  aria-label={`${isOpen ? "Close" : "Open"} case study: ${project.title}`}
-                  onClick={() => toggle(project)}
-                >
-                  <div
-                    className="relative overflow-hidden"
+                <div className="grid items-stretch lg:grid-cols-[1.15fr_0.85fr]">
+                  <button
+                    type="button"
+                    className="relative overflow-hidden text-left"
                     style={{ backgroundColor: project.accent }}
+                    aria-expanded={isOpen}
+                    aria-controls={`${project.id}-study`}
+                    aria-label={`${isOpen ? "Collapse" : "Expand"} details: ${project.title}`}
+                    onClick={() => toggle(project)}
                   >
                     <Image
                       src={project.image}
@@ -64,25 +63,55 @@ export function Work() {
                       sizes="(min-width: 1024px) 55vw, 100vw"
                       className="aspect-[5/3] h-auto w-full object-contain p-4 md:p-6"
                     />
-                  </div>
+                  </button>
                   <div className="flex h-full flex-col p-6 md:p-8">
-                    <div>
-                      <p className="text-sm text-muted">{project.dates}</p>
+                    <button
+                      type="button"
+                      className="text-left"
+                      aria-expanded={isOpen}
+                      aria-controls={`${project.id}-study`}
+                      onClick={() => toggle(project)}
+                    >
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <p className="text-sm text-muted">{project.dates}</p>
+                        {project.caseStudyAvailable ? (
+                          <span className="case-study-tab">
+                            <span className="case-study-dot" aria-hidden="true" />
+                            Case study available
+                          </span>
+                        ) : null}
+                      </div>
                       <h3 className="mt-3 font-serif text-3xl tracking-tight md:text-4xl">
                         {project.title}
                       </h3>
                       <p className="mt-3 text-ink-soft">{project.subtitle}</p>
-                    </div>
-                    <div className="mt-auto grid grid-cols-[1fr_auto] items-center gap-4 pt-8">
+                    </button>
+                    <div className="mt-auto flex flex-col gap-4 pt-8 sm:flex-row sm:items-center sm:justify-between">
                       <p className="text-sm text-muted">
                         {project.cardRole} · {project.timeline}
                       </p>
-                      <span className="justify-self-end rounded-full border border-foreground/15 bg-background/70 px-4 py-2 text-sm whitespace-nowrap">
-                        {isOpen ? "Close study" : "Read case study"}
-                      </span>
+                      <div className="flex flex-wrap items-center gap-4 sm:justify-end">
+                        {project.caseStudyHref ? (
+                          <Link
+                            href={project.caseStudyHref}
+                            className="text-link text-sm whitespace-nowrap"
+                          >
+                            View case study
+                          </Link>
+                        ) : null}
+                        <button
+                          type="button"
+                          className="rounded-full border border-foreground/15 bg-background/70 px-4 py-2 text-sm whitespace-nowrap transition-transform hover:scale-[1.03]"
+                          aria-expanded={isOpen}
+                          aria-controls={`${project.id}-study`}
+                          onClick={() => toggle(project)}
+                        >
+                          {isOpen ? "Read less" : "Read more"}
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </button>
+                </div>
                 <div
                   className={`grid transition-[grid-template-rows] duration-500 ease-out ${
                     isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
