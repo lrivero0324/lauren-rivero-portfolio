@@ -365,25 +365,29 @@ export const glossierCaseStudy = {
     },
     competitive: {
       title: "Competitive analysis",
-      body: "[Placeholder] Summarize competitor patterns relevant to homepage UX and product discovery.",
+      body: "Beauty competitors that guide discovery with clear collection modules and scannable product rails — patterns that informed Glossier’s redesigned homepage hierarchy.",
       references: [
         {
           id: "comp-vbb",
-          label: "Figma export · Competitor — Victoria Beckham Beauty",
+          label: "Competitor — Victoria Beckham Beauty",
           aspect: "16/9" as const,
-          src: null,
-          alt: "Placeholder for Victoria Beckham Beauty homepage reference.",
+          width: 2880,
+          height: 1629,
+          src: "/work/glossier/competitor-vbb.png",
+          alt: "Victoria Beckham Beauty Shop by Collection section with The Lip Collection carousel and Shop Now CTA.",
           caption:
-            "[Placeholder] Brief note on Shop The Icons / discovery pattern.",
+            "Shop by Collection — focused merchandising modules that make discovery scannable.",
         },
         {
           id: "comp-saie",
-          label: "Figma export · Competitor — Saie",
+          label: "Competitor — Saie",
           aspect: "16/9" as const,
-          src: null,
-          alt: "Placeholder for Saie homepage reference.",
+          width: 2880,
+          height: 1482,
+          src: "/work/glossier/competitor-saie.png",
+          alt: "Saie Essentials product rail showing CitySet, Glossybounce, Dew Blush, and SuperSuede with ratings and add-to-bag CTAs.",
           caption:
-            "[Placeholder] Brief note on Essentials / Newness scroll pattern.",
+            "Saie Essentials — horizontal product rail with ratings and clear add-to-bag actions.",
         },
       ] satisfies CaseStudyMedia[],
     },
