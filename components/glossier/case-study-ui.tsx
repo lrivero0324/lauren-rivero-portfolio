@@ -577,7 +577,7 @@ function ProtoEmbed({ url, title }: { url: string; title: string }) {
         onClick={() => setActive(true)}
       >
         <span className="cs-proto-activate-label">View prototype</span>
-        <span className="cs-proto-activate-hint">Loads on click · keeps audio off until then</span>
+        <span className="cs-proto-activate-hint">Loads on click</span>
       </button>
     );
   }

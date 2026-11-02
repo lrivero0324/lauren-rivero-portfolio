@@ -173,15 +173,15 @@ export const projects: readonly Project[] = [
   {
     id: "glossier",
     title: "Glossier Redesign",
-    subtitle: "Swiss-minimal homepage with a Saie-style product rail",
+    subtitle: "Elevating Glossier’s digital shopping experience.",
     dates: "February 2025 — March 2025",
     role: "UX/UI Designer",
     cardRole: "UX/UI Designer",
     timeline: "2 weeks",
     tools: "Figma, Photoshop",
-    image: "/work/glossier.png",
+    image: "/work/glossier/glossier-card.png",
     imageAlt:
-      "Swiss-minimal Glossier homepage redesign mockups for desktop and mobile with a horizontal bestsellers carousel.",
+      "Desktop and mobile mockups of the Glossier homepage redesign featuring the You Doux hero — you smell rich.",
     accent: "#F5E6E2",
     caseStudyAvailable: true,
     caseStudyHref: "/projects/glossier",
@@ -266,8 +266,9 @@ export const glossierCaseStudy = {
   platform: "Responsive web (desktop + mobile)",
   team: "Solo concept project",
   accent: "#F5E6E2",
-  image: "/work/glossier.png",
-  imageAlt: "Desktop and mobile mockups of the Glossier homepage redesign.",
+  image: "/work/glossier/glossier-card.png",
+  imageAlt:
+    "Desktop and mobile mockups of the Glossier homepage redesign featuring the You Doux hero — you smell rich.",
   figmaUrl: "",
   figmaLabel: "Open interactive Figma prototype",
   sections: [
@@ -321,9 +322,11 @@ export const glossierCaseStudy = {
       id: "problem-original-homepage",
       label: "Original Glossier homepage screenshot",
       aspect: "16/9" as const,
-      src: null,
-      alt: "Placeholder for the original Glossier homepage screenshot.",
-      caption: "[Placeholder] Add original homepage screenshot.",
+      width: 2880,
+      height: 1620,
+      src: "/work/glossier/glossier-original-homepage.png",
+      alt: "Screenshot of the current Glossier homepage top, including announcement bar, navigation, and hero.",
+      caption: "Original Glossier homepage — top of page.",
     } satisfies CaseStudyMedia,
     performanceStats: [
       {
@@ -403,11 +406,13 @@ export const glossierCaseStudy = {
     ],
     annotatedHomepage: {
       id: "research-annotated",
-      label: "Figma export · Annotated original homepage",
+      label: "Annotated original homepage",
       aspect: "tall" as const,
-      src: null,
-      alt: "Placeholder for annotated original homepage.",
-      caption: "[Placeholder] Annotated screenshot with callouts.",
+      width: 1497,
+      height: 4096,
+      src: "/work/glossier/glossier-annotated-homepage.png",
+      alt: "Annotated Glossier homepage audit with numbered callouts for promo bar, navigation, hero, merchandising, and footer issues.",
+      caption: "Heuristic audit of the live homepage — ten findings mapped to the page.",
     } satisfies CaseStudyMedia,
   },
   process: {
